@@ -121,6 +121,11 @@ button {
 </head>
 <body>
     <div style="text-align: center;">
+    <textarea id="url-input" rows="1" cols="50" placeholder="https://animezid.net/watch.php?vid=7a3c6df22"></textarea><br>
+    <button onclick="generateSource()">Generate Source</button>
+    <br><br>
+    <textarea id="viewSourceUrl" rows="1" cols="50" placeholder="view-source:https://animezid.net/play.php?vid=7a3c6df22"></textarea><br>
+    <button onclick="copyviewSourceUrl()">Copy</button>
     <h2>animezid.net/.../{Filter server}</h2>
     <textarea id="inputTextarea" rows="3" cols="150" placeholder="<!DOCTYPE html>"></textarea><br>
     <br>
@@ -169,6 +174,24 @@ button {
           document.getElementById("inputTextarea").value = "";
           document.getElementById("outputTextarea").value = "";
     }
+        function generateSource() {
+            const urlInput = document.getElementById('url-input');
+            const url = urlInput.value;
+            
+            // Replace the 'watch.php' with 'play.php' in the URL
+            const modifiedUrl = url.replace('watch.php', 'play.php');
+            
+            const viewSourceUrl = `view-source:${modifiedUrl}`;
+            
+            // Update the second textarea with the generated URL
+            document.getElementById("viewSourceUrl").value = viewSourceUrl;
+        }
+
+        function copyviewSourceUrl() {
+            const viewSourceUrlInput = document.getElementById('viewSourceUrl');
+            viewSourceUrlInput.select();
+            document.execCommand('copy');
+        }
     </script>
 
 
